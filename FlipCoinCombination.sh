@@ -15,18 +15,18 @@ fun(){
 value="$( fun $((RANDOM%2)) )"
 echo Output of singleToss time flip one coin $value
 
-declare -A singletToss
+declare -A doubletToss
 
 for (( i=0; i<$T; i++ ))
 do
-  value="$( fun $((RANDOM%2)) )"
-  singletToss[$value]=$((${singletToss[$value]}+1))
+  value1="$( fun $((RANDOM%2)) )"
+  value2="$( fun $((RANDOM%2)) )"
+  doubletToss[$value1$value2]=$((${doubletToss[$value1$value2]}+1))
 done
-echo Singlet combination ${!singletToss[@]}
-echo Singlet count ${singletToss[@]}
-for key in "${!singletToss[@]}";
+echo Doublet combination ${!doubletToss[@]}
+echo Doublet count ${doubletToss[@]}
+for key in "${!doubletToss[@]}";
 do
-  prcntg=`expr "scale=2;${singletToss[$key]}*100/$T" | bc`
+  prcntg=`expr "scale=2;${doubletToss[$key]}*100/$T" | bc`
   echo prcntg of $key $prcntg
-
 done
